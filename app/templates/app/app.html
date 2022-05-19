@@ -48,7 +48,7 @@
         {% for key, value in secrets.items %}
         <tr>
             <td class={{ key }} visible="true">{{ key }}</td>
-            <td class={{ key }} visible="true">{{ value.0 }}</td>
+            {% comment %} <td class={{ key }} visible="true">{{ value.0 }}</td> {% endcomment %}
             <td class={{ key }} visible="true" filterVal="TOTP">{{ value.1 }} </td>
             <td class={{ key }} visible="true" filterVal="TOTP"><p class="round">
                 <span class="ouro ouro3">
