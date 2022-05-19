@@ -14,9 +14,9 @@ Navigate to:
 Text pasted into Add Input field should be in following form (email adn 2fa separated by one empty line):
 
 `EMAIL`<br />
-`2FA KEY`<br />
-`EMAIL1`<br />
-`2FA KEY1`<br />
+`2FA-KEY`<br />
+`EMAIL_1`<br />
+`2FA-KEY_1`<br />
 ...<br />
 ...
 
