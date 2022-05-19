@@ -14,10 +14,15 @@ Navigate to:
 Text pasted into Add Input field should be in following form:
 
 `EMAIL`
+
 `2FA KEY`
+
 `EMAIL1`
+
 `2FA KEY1`
+
 ...
+
 ...
 
 
