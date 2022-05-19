@@ -1,0 +1,311 @@
+ul, table {
+    background-color: whitesmoke;
+    list-style: none;
+    margin: 2rem auto;
+    width: fit-content;
+    max-width: 90rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    padding: 1rem;
+    border-radius: 12px;
+    color: rgb(0, 0, 0);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+table {
+    border-collapse:collapse
+}
+
+li, td, th {
+    font-family: "Open Sans Light", "Open Sans", "Segoe UI", Helvetica, Arial;
+    color: #3c4043;
+    margin: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-inline: 2rem;
+}
+
+tr {
+    border-bottom: 1px solid #ccc;
+}
+
+#search, #add {
+    color: white;
+    margin: auto;
+    text-align: center;
+    font-size: 1.5rem;
+    width: 54%;
+    border-radius: 12px;
+    border: 3px solid rgb(46, 46, 46);
+    background-color: rgb(35, 34, 34);
+    padding: 10px;
+    margin-top: 20px;
+}
+
+#add {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+
+input, textarea {
+    font-family: "Open Sans Light", "Open Sans", "Segoe UI", Helvetica, Arial;
+    padding: 8px;
+    margin-left: 20px;
+    min-width: 300px;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+tr:last-of-type {
+    border-bottom: none;
+}
+
+td[visible="false"] {
+    display: none; /* Hidden by default */
+
+}
+
+td[filterVal="2FA"] {
+    display: none;
+}
+
+
+
+
+.ouro {
+    position: relative;
+    display:flex;
+    height:35px;
+    width: 35px;
+    margin: 1em;
+    border-radius: 50%;  
+    background: none repeat scroll 0 0 #DDDDDD;
+    overflow:hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,.1) inset, 0 0 25px rgba(0,0,255,0.075);
+}
+
+.ouro:after {
+    content: "";
+    position: absolute;
+    top: 9px; left: 9px;
+    display: block;
+    height: 28px; width: 28px;
+    background: none repeat scroll 0 0 #F2F2F2;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+.ouro > span {
+    position: absolute;
+    height: 100%; width: 50%;
+    overflow: hidden;
+}
+.left  { left:0   }
+.right { left:50% }
+
+.anim {
+    position: absolute;
+    left: 100%; top: 0;
+    height: 100%; width: 100%;
+    border-radius: 999px;
+    background: none repeat scroll 0 0 #508EC3;
+    opacity: 0.8;
+    -webkit-animation: ui-spinner-rotate-left 30s infinite;
+    animation: ui-spinner-rotate-left 30s infinite;
+    -webkit-transform-origin: 0 50% 0;
+    transform-origin: 0 50% 0;
+}
+.left .anim {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+.right .anim {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    left: -100%;
+    -webkit-transform-origin: 100% 50% 0;
+    transform-origin: 100% 50% 0;
+}
+
+/* v3 */
+.ouro3 .anim {
+   -webkit-animation-delay: 0s;
+   /* -webkit-animation-duration:60s; */
+   -webkit-animation-timing-function: linear;
+   animation-delay: 0s;
+   /* animation-duration:60s; */
+   animation-timing-function: linear;
+}
+.ouro3 .right .anim{
+   -webkit-animation-name: ui-spinner-rotate-right;
+   -webkit-animation-delay:0;
+   -webkit-animation-delay: 1.5s;
+   animation-name: ui-spinner-rotate-right;
+   animation-delay:0;
+   animation-delay: 1.5s;
+}
+
+/* round variation */
+.round .ouro:after {display:none }
+
+/* double variation */
+.double .ouro:after {
+  height: 13px; width: 13px;
+  left: 7px; top: 7px;
+  border: 10px solid #ddd;
+  background: transparent;
+  box-shadow: none;
+}
+
+@keyframes ui-spinner-rotate-right{
+  0%{transform:rotate(0deg)}
+  25%{transform:rotate(180deg)}
+  50%{transform:rotate(180deg)}
+  75%{transform:rotate(360deg)}
+  100%{transform:rotate(360deg)}
+}
+@keyframes ui-spinner-rotate-left{
+  0%{transform:rotate(0deg)}
+  25%{transform:rotate(0deg)}
+  50%{transform:rotate(180deg)}
+  75%{transform:rotate(180deg)}
+  100%{transform:rotate(360deg)}
+}
+
+@-webkit-keyframes ui-spinner-rotate-right{
+  0%{-webkit-transform:rotate(0deg)}
+  25%{-webkit-transform:rotate(180deg)}
+  50%{-webkit-transform:rotate(180deg)}
+  75%{-webkit-transform:rotate(360deg)}
+  100%{-webkit-transform:rotate(360deg)}
+}
+@-webkit-keyframes ui-spinner-rotate-left{
+  0%{-webkit-transform:rotate(0deg)}
+  25%{-webkit-transform:rotate(0deg)}
+  50%{-webkit-transform:rotate(180deg)}
+  75%{-webkit-transform:rotate(180deg)}
+  100%{-webkit-transform:rotate(360deg)}
+}
+
+/*
+ * Some bugs with Chrome (Android), Safari and Opera, I'll try to see how http://atomeye.com/projects/sass-css-spinner.html made his code.
+ */
+
+/* presentation styles */
+html {height: 100%}
+body { text-align:center; background: radial-gradient(circle, #fff 0%, #bbb 85%) no-repeat; background: -webkit-radial-gradient(circle, #fff 0%, #bbb 85%) no-repeat; height: 100%; display:table; width:100%}
+.block {display: table-cell; vertical-align:middle}
+h1, a { margin-top: 1em; font-family: "Open Sans Light", "Open Sans", "Segoe UI", Helvetica, Arial; color: #888; font-weight: lighter;}
+.info {margin-top: 25px}
+.info a {font-size: 12px; color: #999}
+.info br + a {text-decoration:none}
+
+
+td {
+    animation: fadeInTd 1s;
+    -webkit-animation: fadeInTd 1s;
+    -moz-animation: fadeInTd 1s;
+    -o-animation: fadeInTd 1s;
+    -ms-animation: fadeInTd 1s;
+}
+  
+@keyframes fadeInTd {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-moz-keyframes fadeInTd {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-webkit-keyframes fadeInTd {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-o-keyframes fadeInTd {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-ms-keyframes fadeInTd {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+
+
+
+
+.button-17 {
+  align-items: center;
+  margin-left: 20px;
+  appearance: none;
+  background-color: #fff;
+  border-radius: 6px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-sizing: border-box;
+  color: #3c4043;
+  cursor: pointer;
+  display: inline-flex;
+  fill: currentcolor;
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  height: 38px;
+  justify-content: center;
+  letter-spacing: .25px;
+  line-height: normal;
+  max-width: 100%;
+  overflow: visible;
+  padding: 2px 24px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: auto;
+  will-change: transform,opacity;
+  z-index: 0;
+}
+
+.button-17:hover {
+  background: #F6F9FE;
+  color: #174ea6;
+}
+
+.button-17:active {
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+  outline: none;
+}
+
+.button-17:focus {
+  outline: none;
+  border: 2px solid #4285f4;
+}
+
+.button-17:not(:disabled) {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):hover {
+  box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+}
+
+.button-17:not(:disabled):focus {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):active {
+  box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+}
+
+.button-17:disabled {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}

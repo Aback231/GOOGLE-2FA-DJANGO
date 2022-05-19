@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    {% load static %}
+    {% block css_files %}
+     <link rel="stylesheet" href="{% static "app/app.css" %}">
+    {% endblock %}
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google 2FA</title>
+</head>
+<body>
+    {% comment %} <h1 id="timer">{{ valid_time }}</h1> {% endcomment %}
+
+    {% comment %} <p class="round">
+        <span class="ouro ouro3">
+          <span class="left"><span class="anim"></span></span>
+          <span class="right"><span class="anim"></span></span>
+        </span>
+    </p> {% endcomment %}
+
+    <div id="add">
+        <label id="label-add" for="site-add">Add email and 2FA secret:</label>
+        <textarea type="add" id="site-add" name="add" value="" rows="1";></textarea>
+        {% comment %} <form method="post">
+            {% csrf_token %} {% endcomment %}
+            <button class="button-17" role="button" name="run_script_add" onclick="addButton()">Add</button>
+        {% comment %} </form> {% endcomment %}
+    </div>
+
+    <div id="search">
+        <label id="label-search" for="site-search">Email search:</label>
+        <input type="search" id="site-search" name="q" value="";>
+        <button class="button-17" role="button" onclick="filterSelection()">Search</button>
+    </div>
+
+    <table>
+        <tr>
+          <th>Email</th>
+          <th >2FA</th>
+          <th>TOTP</th>
+          <th id="timer">{{ valid_time }}</th>
+        </tr>
+        
+        {% for key, value in secrets.items %}
+        <tr>
+            <td class={{ key }} visible="true">{{ key }}</td>
+            <td class={{ key }} visible="true">{{ value.0 }}</td>
+            <td class={{ key }} visible="true" filterVal="TOTP">{{ value.1 }} </td>
+            <td class={{ key }} visible="true" filterVal="TOTP"><p class="round">
+                <span class="ouro ouro3">
+                  <span class="left"><span class="anim"></span></span>
+                  <span class="right"><span class="anim"></span></span>
+                </span>
+            </p></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+    {% comment %} Add Button Click (runs elif path == "script": in views.py) {% endcomment %}
+    <script>
+        function addButton(){
+            var text = document.getElementById("site-add").value;
+            $.ajax({
+            type: "POST",
+            url: "script",
+            data: {
+                "query_param" : text,
+                "url" : "script",
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            context: document.body
+            }).done(function() {
+                //alert('finished python script');
+                clearInterval(timer);
+                window.location.href = window.location.href;
+                location.reload(true);
+            });
+        }
+    </script>
+
+
+    {% comment %} Show or hide filtered emails {% endcomment %}
+    <script type="text/javascript">
+        function filterSelection() {
+            var email = document.getElementById("site-search").value;
+            localStorage.setItem("email", email);
+            var x = document.getElementsByTagName("td");
+            var matches = 0;
+            for (i = 0; i < x.length; i++) {
+                    if (x[i].className.includes(email)){
+                        matches += 1;                        
+                        x[i].setAttribute("visible","true");
+                    }else{
+                        x[i].setAttribute("visible","false");
+                }  
+            }
+            if(matches == 0){
+                for (i = 0; i < x.length; i++) {
+                    x[i].setAttribute("visible","true");
+                }
+            }
+        }
+    </script>
+    {% comment %} Set search input box to saved email {% endcomment %}
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            var email = localStorage.getItem("email");
+            document.getElementById("site-search").setAttribute("value", email);
+            filterSelection()
+            document.querySelector('#site-search').addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    filterSelection()
+                }
+            });
+        });
+    </script>
+    {% comment %} Auto refresh to regeneraate TOTP {% endcomment %}
+    <script language="javascript">
+        $( document ).ready(function() {
+            let interval = {{valid_time}}*1000
+            let anim_interval = {{valid_time}}*2
+
+            $('.anim').css("-webkit-animation-duration", anim_interval+"s");
+            $('.anim').css("animation-duration", anim_interval+"s");
+
+            var refresh = setTimeout(function(){
+                clearInterval(timer);
+                window.location.href = window.location.href;
+                location.reload(true);
+            }, interval);
+
+            var timer = setInterval(function() {
+                timer_element = document.getElementById("timer").innerText
+                timer_new = timer_element - 1
+                document.getElementById("timer").innerText = timer_new
+            }, 1000)
+        });
+    </script>
+</html>
