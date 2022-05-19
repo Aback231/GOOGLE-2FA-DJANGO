@@ -11,18 +11,13 @@ Navigate to:
 `http://127.0.0.1:8000/app/2fa`
 
 2FA secrets are stored locally inside Sqlite3 DB. Initially DB is empty, but can be populated by using the Add button.
-Text pasted into Add Input field should be in following form:
+Text pasted into Add Input field should be in following form (email adn 2fa separated by one empty line):
 
-`EMAIL`
-
-`2FA KEY`
-
-`EMAIL1`
-
-`2FA KEY1`
-
-...
-
+`EMAIL`<br />
+`2FA KEY`<br />
+`EMAIL1`<br />
+`2FA KEY1`<br />
+...<br />
 ...
 
 
