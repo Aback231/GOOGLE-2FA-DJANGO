@@ -1,4 +1,4 @@
-# GOOGLE 2FA DJANGO
+# Google 2FA | Django
 
 ![alt text](https://github.com/Aback231/GOOGLE-2FA-DJANGO/blob/main/WebUI.png?raw=true)
 
