@@ -1,5 +1,7 @@
 # GOOGLE 2FA DJANGO
 
+![alt text](https://github.com/Aback231/GOOGLE-2FA-DJANGO/blob/main/WebUI.png?raw=true)
+
 Google 2FA code generator with time calculation and animation, local in browser.
 
 Start the server:
@@ -23,5 +25,3 @@ Text pasted into Add Input field should be in following form (email adn 2fa sepa
 2FA secret is disabled by default in the table. To enable it uncomment this line:
 
 `{% comment %} <td class={{ key }} visible="true">{{ value.0 }}</td> {% endcomment %}`<br />
-
-![alt text](https://github.com/Aback231/GOOGLE-2FA-DJANGO/blob/main/WebUI.png?raw=true)
